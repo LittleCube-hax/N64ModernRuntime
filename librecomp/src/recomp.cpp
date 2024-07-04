@@ -130,6 +130,26 @@ bool recomp::load_stored_rom(std::u8string& game_id) {
         return false;
     }
 
+    stored_rom_data[0x00B602E7] = 0x92;
+    stored_rom_data[0x00B602E7 + 0x3] = 0x10;
+
+    const char msg[128] = "You got an AP item!";
+
+    for (int i = 0; i < 128; ++i) {
+        stored_rom_data[0x00A4B377 + i] = msg[i];
+        if (msg[i] == '\0') {
+            stored_rom_data[0x00A4B377 + i + 1] = 0xBF;
+            stored_rom_data[0x00A4B377 + i + 2] = 0x02;
+            stored_rom_data[0x00A4B377 + i + 3] = 0x00;
+            stored_rom_data[0x00A4B377 + i + 4] = 0xFE;
+            stored_rom_data[0x00A4B377 + i + 5] = 0xFF;
+            stored_rom_data[0x00A4B377 + i + 6] = 0xFF;
+            stored_rom_data[0x00A4B377 + i + 7] = 0xFF;
+            stored_rom_data[0x00A4B377 + i + 8] = 0xFF;
+            break;
+        }
+    }
+
     recomp::set_rom_contents(std::move(stored_rom_data));
     return true;
 }
