@@ -150,6 +150,15 @@ bool recomp::load_stored_rom(std::u8string& game_id) {
         }
     }
 
+    stored_rom_data[0x009FF96B] = 0xBF;
+    stored_rom_data[0x009FF96B + 1] = 0x02;
+    stored_rom_data[0x009FF96B + 2] = 0x00;
+    stored_rom_data[0x009FF96B + 3] = 0xFE;
+    stored_rom_data[0x009FF96B + 4] = 0xFF;
+    stored_rom_data[0x009FF96B + 5] = 0xFF;
+    stored_rom_data[0x009FF96B + 6] = 0xFF;
+    stored_rom_data[0x009FF96B + 7] = 0xFF;
+
     recomp::set_rom_contents(std::move(stored_rom_data));
     return true;
 }
