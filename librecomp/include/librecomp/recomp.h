@@ -256,6 +256,8 @@ typedef struct {
 extern "C" {
 #endif
 
+void DDIVU(uint64_t a, uint64_t b, uint64_t * lo, uint64_t * hi);
+
 void cop0_status_write(recomp_context* ctx, gpr value);
 gpr cop0_status_read(recomp_context* ctx);
 void switch_error(const char* func, uint32_t vram, uint32_t jtbl);
